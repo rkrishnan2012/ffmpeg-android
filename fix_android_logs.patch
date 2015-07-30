@@ -1,0 +1,35 @@
+commit 43852f72f097f282f503eee16420f7d5a269dcfe
+Author: rkrishnan <rohitkrishnan101@gmail.com>
+Date:   Wed Jul 29 02:27:19 2015 -0400
+
+    Fixed android logs and naming scheme for so files
+
+diff --git a/configure b/configure
+index f3550a0..9262c0d 100755
+--- a/configure
++++ b/configure
+@@ -2915,10 +2915,10 @@ SLIBPREF="lib"
+ SLIBSUF=".so"
+ SLIBNAME='$(SLIBPREF)$(FULLNAME)$(SLIBSUF)'
+ SLIBNAME_WITH_VERSION='$(SLIBNAME).$(LIBVERSION)'
+-SLIBNAME_WITH_MAJOR='$(SLIBNAME).$(LIBMAJOR)'
++SLIBNAME_WITH_MAJOR='$(SLIBPREF)$(FULLNAME)-$(LIBMAJOR)$(SLIBSUF)'
+ LIB_INSTALL_EXTRA_CMD='$$(RANLIB) "$(LIBDIR)/$(LIBNAME)"'
+-SLIB_INSTALL_NAME='$(SLIBNAME_WITH_VERSION)'
+-SLIB_INSTALL_LINKS='$(SLIBNAME_WITH_MAJOR) $(SLIBNAME)'
++SLIB_INSTALL_NAME='$(SLIBNAME_WITH_MAJOR)'
++SLIB_INSTALL_LINKS='$(SLIBNAME)'
+ 
+ asflags_filter=echo
+ cflags_filter=echo
+diff --git a/libavutil/log.c b/libavutil/log.c
+index b2bc65c..362f25b 100644
+--- a/libavutil/log.c
++++ b/libavutil/log.c
+@@ -452,4 +452,4 @@ int main(int argc, char **argv)
+     return 0;
+ }
+ // LCOV_EXCL_STOP
+-#endif
++#endif
+\ No newline at end of file
