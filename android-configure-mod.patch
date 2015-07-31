@@ -1,0 +1,30 @@
+commit a9790c5c55d9d96b89120d4abd43efeec70ef03b
+Author: rkrishnan <rohitkrishnan101@gmail.com>
+Date:   Thu Jul 30 22:42:11 2015 -0400
+
+    Modified configure to match android file name scheme
+
+diff --git a/configure b/configure
+index f3550a0..3add383 100755
+--- a/configure
++++ b/configure
+@@ -1,4 +1,4 @@
+-#!/bin/sh
++figu#!/bin/sh
+ #
+ # FFmpeg configure script
+ #
+@@ -2915,10 +2915,10 @@ SLIBPREF="lib"
+ SLIBSUF=".so"
+ SLIBNAME='$(SLIBPREF)$(FULLNAME)$(SLIBSUF)'
+ SLIBNAME_WITH_VERSION='$(SLIBNAME).$(LIBVERSION)'
+-SLIBNAME_WITH_MAJOR='$(SLIBNAME).$(LIBMAJOR)'
++SLIBNAME_WITH_MAJOR='$(SLIBPREF)$(FULLNAME)-$(LIBMAJOR)$(SLIBSUF)'
+ LIB_INSTALL_EXTRA_CMD='$$(RANLIB) "$(LIBDIR)/$(LIBNAME)"'
+-SLIB_INSTALL_NAME='$(SLIBNAME_WITH_VERSION)'
+-SLIB_INSTALL_LINKS='$(SLIBNAME_WITH_MAJOR) $(SLIBNAME)'
++SLIB_INSTALL_NAME='$(SLIBNAME_WITH_MAJOR)'
++SLIB_INSTALL_LINKS='$(SLIBNAME)'
+ 
+ asflags_filter=echo
+ cflags_filter=echo

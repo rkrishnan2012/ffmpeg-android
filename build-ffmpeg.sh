@@ -1,5 +1,5 @@
 #!/bin/bash
-ANDROID_NDK=~/Documents/androidSDK/ndk-bundle
+
 
 DEST=`pwd`/build/ffmpeg && rm -rf $DEST
 SOURCE=`pwd`/ffmpeg
@@ -22,7 +22,8 @@ CFLAGS="-fpic -fasm \
   -O3"
 
 
-FFMPEG_FLAGS="--target-os=linux \
+FFMPEG_FLAGS=" \
+  --target-os=linux \
   --enable-cross-compile \
   --disable-static \
   --enable-shared \
