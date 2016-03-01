@@ -40,7 +40,7 @@ FFMPEG_FLAGS=" \
   --enable-pthreads \
   --disable-parsers \
   --enable-parser=aac \
-  --enable-parser=h264 \
+  --enable-parser=h264 \40934e0
   --enable-demuxers \
   --enable-demuxer=mpegts \
   --enable-demuxer=mpegtsraw \
@@ -89,6 +89,7 @@ if [ -d ffmpeg ]; then
 else
   git clone git://source.ffmpeg.org/ffmpeg.git ffmpeg
   cd ffmpeg
+  git checkout 40934e0
 fi
 
 for version in neon; do
