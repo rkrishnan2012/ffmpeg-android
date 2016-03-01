@@ -19,10 +19,11 @@ CFLAGS="-fpic -fasm \
   -fmodulo-sched -fmodulo-sched-allow-regmoves \
   -Wno-psabi -Wa,--noexecstack \
   -DANDROID \
-  -O3"
+  -O3 -g"
 
 
 FFMPEG_FLAGS=" \
+  --disable-everything \
   --target-os=linux \
   --enable-cross-compile \
   --disable-static \
@@ -37,19 +38,34 @@ FFMPEG_FLAGS=" \
   --enable-fft \
   --enable-rdft \
   --enable-pthreads \
-  --enable-parsers \
+  --disable-parsers \
+  --enable-parser=aac \
+  --enable-parser=h264 \
   --enable-demuxers \
-  --enable-decoders \
-  --enable-bsfs \
+  --enable-demuxer=mpegts \
+  --enable-demuxer=mpegtsraw \
+  --enable-demuxer=aac \
+  --enable-demuxer=h264 \
+  --enable-demuxer=live_flv \
+  --enable-demuxer=rawvideo \
+  --enable-demuxer=mpegps \
+  --enable-demuxer=flv \
+  --enable-demuxer=mpegvideo \
+  --enable-demuxer=yuv4mpegpipe \
+  --disable-decoders \
+  --enable-decoder=aac \
+  --enable-decoder=h264 \
+  --disable-encoders \
+  --disable-muxers \
+  --enable-muxer=flv \
+  --disable-bsfs \
+  --enable-bsf=aac_adtstoasc \
   --enable-network \
   --enable-swscale  \
-  --enable-swresample  \
-  --enable-avresample \
+  --disable-swresample  \
+  --disable-avresample \
   --enable-hwaccels \
-  --enable-decoder=rawvideo \
   --enable-neon \
-  --enable-encoder=aac \
-  --enable-encoder=flv \
   --enable-asm \
   --enable-version3"
 
@@ -122,7 +138,7 @@ for version in neon; do
   export AR=$TOOLCHAIN_PREFIX-ar
 
 
-  PREFIX="$DEST/$version" && mkdir -p $PREFIX
+  PREFIX="$DEST/$LIB_SUB" && mkdir -p $PREFIX
 
   cd $SOURCE
   echo "Configure ffmpeg for $version."
